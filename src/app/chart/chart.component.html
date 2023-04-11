@@ -1,0 +1,29 @@
+<div>
+    <select [ngModel]="selectedDirectorate" (ngModelChange)="onDirectorateSelectChange($event)">
+        <option *ngFor="let item of uniqueDirectorateList | orderBy: 'item'" [value]="item">{{ item }}</option>
+      </select>
+    <select [ngModel]="selectedSuburb" (ngModelChange)="onSuberbSelectChange($event)">
+      <option *ngFor="let item of uniqueSuberbList | orderBy: 'item'" [value]="item">{{ item }}</option>
+    </select>
+</div>
+
+<div class="chart-wrapper">
+    <canvas baseChart 
+    [datasets]="barChartData"
+    [labels]="barChartLabels"
+    [options]="barChartOptions"
+    [plugins]="barChartPlugins"
+    [legend]="barChartLegend"
+    [type]="barChartType"
+    (chartClick)="onChartClick($event)">
+  </canvas>
+
+  <canvas baseChart 
+    [datasets]="barChartSuburbData"
+    [labels]="barChartSuburbLabels"
+    [options]="barChartSuburbOptions"
+    [plugins]="barChartSuburbPlugins"
+    [legend]="barChartSuburbLegend"
+    [type]="barChartType">
+  </canvas>
+</div>
